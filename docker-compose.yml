@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  iso-builder:
+    build: .
+    container_name: iwill-iso-builder
+    privileged: true
+    volumes:
+      - ./output:/build/output
+      - ./build-scripts:/build/scripts
+      - ./config:/build/config
+    environment:
+      - HOSTNAME=iwill-signage
+      - USERNAME=admin
+      - PASSWORD=[YOUR-PASSWORD]
+    command: /build/scripts/build-iso.sh
